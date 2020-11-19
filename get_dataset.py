@@ -21,8 +21,11 @@ def get_dataset(expert):
     for name in names:
         image_url = SOURCE + name
         if not os.path.exists(os.path.join(out_dir, name)):
-            image = wget.download(image_url, out = out_dir)
-            print("\nSuccessfully downloaded " + name)
+            try:
+                image = wget.download(image_url, out = out_dir)
+                print("\nSuccessfully downloaded " + name)
+            except Exception as e:
+                print(e)
 
 def main():
     expert = input("Type the expert (A-E , a-e): ")
